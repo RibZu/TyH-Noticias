@@ -16,7 +16,6 @@ $configController = new ConfigController();
 $publicController = new PublicController();
 
 switch($action) {
-    // Rutas públicas
     case 'inicio':
         $publicController->index();
         break;
@@ -28,8 +27,7 @@ switch($action) {
     case 'buscar':
         $publicController->buscar();
         break;
-    
-    // Rutas de autenticación
+
     case 'login':
         $authController->login();
         break;
@@ -39,16 +37,14 @@ switch($action) {
     case 'logout':
         $authController->logout();
         break;
-    
-    // Rutas protegidas
+
     case 'dashboard':
         $authController->dashboard();
         break;
     case 'perfil':
         $authController->perfil();
         break;
-    
-    // Gestión de noticias
+
     case 'crear_noticia':
         $noticiaController->crear();
         break;
@@ -77,8 +73,7 @@ switch($action) {
         if($id) $noticiaController->historial($id);
         else header("Location: index.php?action=dashboard");
         break;
-    
-    // Configuración (solo admin)
+
     case 'parametros':
         $configController->parametros();
         break;

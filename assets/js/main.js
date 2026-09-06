@@ -1,6 +1,4 @@
-// Validaciones de formularios
 document.addEventListener('DOMContentLoaded', function() {
-    // Validar título
     const tituloInput = document.querySelector('input[name="titulo"]');
     if(tituloInput) {
         tituloInput.addEventListener('blur', function() {
@@ -13,8 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Validar descripción
+
     const descripcionTextarea = document.querySelector('textarea[name="descripcion"]');
     if(descripcionTextarea) {
         descripcionTextarea.addEventListener('blur', function() {
@@ -25,8 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Validar imagen
+
     const imagenInput = document.querySelector('input[name="imagen"]');
     if(imagenInput) {
         imagenInput.addEventListener('change', function() {

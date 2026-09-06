@@ -79,7 +79,6 @@
                             </div>
                         <?php endif; ?>
 
-                        <!-- Mostrar imagen SOLO si existe -->
                         <?php if(!empty($noticia['imagen']) && file_exists('uploads/' . $noticia['imagen'])): ?>
                             <div class="text-center">
                                 <img src="uploads/<?php echo $noticia['imagen']; ?>" class="noticia-imagen img-fluid" alt="<?php echo htmlspecialchars($noticia['titulo']); ?>">

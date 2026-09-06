@@ -21,7 +21,6 @@
     font-size: 1.5rem;
 }
 
-/* Estilos para el footer */
 .footer {
     margin-top: auto;
     border-top: 1px solid #dee2e6;
@@ -36,7 +35,6 @@
     text-decoration: underline !important;
 }
 
-/* Para que el footer siempre esté al fondo */
 html, body {
     height: 100%;
 }
@@ -46,13 +44,12 @@ body {
     flex-direction: column;
 }
 
-/* Estilos responsivos para el footer */
 @media (max-width: 768px) {
     .footer .text-md-end {
         text-align: center !important;
         margin-top: 1rem;
     }
-    
+
     .footer .col-md-4 {
         text-align: center;
         margin-bottom: 1.5rem;

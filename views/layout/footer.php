@@ -1,5 +1,5 @@
-    </div> <!-- Cierre del container -->
-    
+    </div>
+
     <footer class="footer mt-auto py-4 bg-light">
         <div class="container">
             <div class="row">
@@ -49,24 +49,15 @@
         </div>
     </footer>
     
-    <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- jQuery (opcional, para algunas funcionalidades) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Script personalizado -->
     <script src="assets/js/main.js"></script>
-    
-    <!-- Script adicional para tooltips y validaciones en tiempo real -->
     <script>
-        // Inicializar tooltips de Bootstrap
         var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
         var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
             return new bootstrap.Tooltip(tooltipTriggerEl);
         });
-        
-        // Auto-cerrar alertas después de 5 segundos
+
         document.addEventListener('DOMContentLoaded', function() {
             setTimeout(function() {
                 var alerts = document.querySelectorAll('.alert');
@@ -76,15 +67,12 @@
                 });
             }, 5000);
         });
-        
-        // Confirmación para acciones peligrosas
+
         function confirmarAccion(mensaje) {
             return confirm(mensaje);
         }
-        
-        // Validación en tiempo real para formularios
+
         document.addEventListener('DOMContentLoaded', function() {
-            // Para cualquier formulario que necesite validación
             const forms = document.querySelectorAll('.needs-validation');
             Array.prototype.slice.call(forms).forEach(function(form) {
                 form.addEventListener('submit', function(event) {

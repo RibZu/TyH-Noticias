@@ -11,7 +11,6 @@ class Usuario {
     }
     
     public function registrar($nombre, $email, $password, $rol_editor = 0, $rol_validador = 0) {
-        // Verificar si el email ya existe
         if($this->obtenerPorEmail($email)) {
             return false;
         }

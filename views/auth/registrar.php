@@ -76,8 +76,7 @@
 <script>
 document.getElementById('registroForm').addEventListener('submit', function(e) {
     let isValid = true;
-    
-    // Validar nombre
+
     const nombre = document.getElementById('nombre');
     if(nombre.value.length < 3) {
         nombre.classList.add('is-invalid');
@@ -85,8 +84,7 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
     } else {
         nombre.classList.remove('is-invalid');
     }
-    
-    // Validar email
+
     const email = document.getElementById('email');
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if(!emailRegex.test(email.value)) {
@@ -95,8 +93,7 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
     } else {
         email.classList.remove('is-invalid');
     }
-    
-    // Validar contraseña
+
     const password = document.getElementById('password');
     if(password.value.length < 6) {
         password.classList.add('is-invalid');
@@ -104,8 +101,7 @@ document.getElementById('registroForm').addEventListener('submit', function(e) {
     } else {
         password.classList.remove('is-invalid');
     }
-    
-    // Validar confirmación de contraseña
+
     const confirmar = document.getElementById('confirmar_password');
     if(confirmar.value !== password.value) {
         confirmar.classList.add('is-invalid');

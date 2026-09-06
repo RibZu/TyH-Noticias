@@ -5,13 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TyH Noticias - Sistema de Gestión Institucional</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    
-    <!-- Custom CSS -->
     <link href="assets/css/styles.css" rel="stylesheet">
     
     <style>
@@ -82,7 +77,6 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <!-- Enlace público al sitio -->
                     <li class="nav-item">
                         <a class="nav-link" href="index.php?action=inicio">
                             <i class="bi bi-house-door"></i> Ver Sitio
@@ -90,7 +84,6 @@
                     </li>
                     
                     <?php if(isset($_SESSION['usuario_id'])): ?>
-                        <!-- Menú para usuarios logueados -->
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
                                 <i class="bi bi-person-circle"></i> <?php echo htmlspecialchars($_SESSION['usuario_nombre']); ?>
@@ -120,7 +113,6 @@
                             </ul>
                         </li>
                     <?php else: ?>
-                        <!-- Menú para usuarios no logueados -->
                         <li class="nav-item">
                             <a class="nav-link" href="index.php?action=buscar">
                                 <i class="bi bi-search"></i> Buscar
@@ -143,7 +135,6 @@
     </nav>
     
     <div class="container mt-4">
-        <!-- Mensajes de éxito/error -->
         <?php if(isset($_SESSION['success'])): ?>
             <div class="alert alert-success alert-dismissible fade show shadow-sm" role="alert">
                 <i class="bi bi-check-circle-fill"></i> <?php echo $_SESSION['success']; unset($_SESSION['success']); ?>

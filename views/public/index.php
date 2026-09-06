@@ -50,7 +50,6 @@
     </nav>
 
     <div class="container mt-4">
-        <!-- Noticias Destacadas -->
         <?php if(isset($destacadas) && count($destacadas) > 0): ?>
             <div class="row mb-5">
                 <div class="col-12">
@@ -90,7 +89,6 @@
             </div>
         <?php endif; ?>
 
-        <!-- Todas las Noticias -->
         <div class="row">
             <div class="col-12">
                 <h2 class="text-center mb-4">

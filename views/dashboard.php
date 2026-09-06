@@ -88,8 +88,7 @@
                             </button>
                         </td>
                     </tr>
-                    
-                    <!-- Modal para cada noticia -->
+
                     <div class="modal fade" id="modalValidar<?php echo $noticia['id']; ?>" tabindex="-1">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
@@ -186,8 +185,7 @@
                                         data-bs-target="#modalEnviar<?php echo $noticia['id']; ?>">
                                     <i class="bi bi-send"></i> Enviar
                                 </button>
-                                
-                                <!-- Modal Enviar a Validación -->
+
                                 <div class="modal fade" id="modalEnviar<?php echo $noticia['id']; ?>" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">
@@ -218,8 +216,7 @@
                                         data-bs-target="#modalAnular<?php echo $noticia['id']; ?>">
                                     <i class="bi bi-x-circle"></i> Anular
                                 </button>
-                                
-                                <!-- Modal Anular Noticia -->
+
                                 <div class="modal fade" id="modalAnular<?php echo $noticia['id']; ?>" tabindex="-1">
                                     <div class="modal-dialog modal-dialog-centered">
                                         <div class="modal-content">

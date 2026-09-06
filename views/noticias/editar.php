@@ -18,7 +18,6 @@
                                   rows="5" minlength="50" required><?php echo htmlspecialchars($noticia['descripcion']); ?></textarea>
                     </div>
                     
-                    <!-- Mostrar imagen actual SOLO si existe -->
                     <?php if(!empty($noticia['imagen']) && file_exists('../uploads/' . $noticia['imagen'])): ?>
                         <div class="mb-3">
                             <label class="form-label">Imagen actual</label>
