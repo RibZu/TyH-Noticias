@@ -12,6 +12,17 @@ Trabajo práctico integrador de la materia **Técnicas y Herramientas para el De
 - Expiración automática de noticias publicadas y parámetros del sistema configurables (días de expiración, tamaño máximo de imagen).
 - Sitio público sin login: listado, destacadas, búsqueda y contador de vistas.
 
+## Capturas de pantalla
+
+| | |
+|---|---|
+| **Portal público** ![Inicio](docs/screenshots/01_home.png) | **Búsqueda** ![Buscar](docs/screenshots/02_buscar.png) |
+| **Detalle de noticia** ![Ver noticia](docs/screenshots/03_ver_noticia.png) | **Login** ![Login](docs/screenshots/04_login.png) |
+| **Registro** ![Registro](docs/screenshots/05_registro.png) | **Dashboard** ![Dashboard](docs/screenshots/06_dashboard.png) |
+| **Crear noticia** ![Crear noticia](docs/screenshots/07_crear_noticia.png) | **Editar noticia** ![Editar noticia](docs/screenshots/08_editar_noticia.png) |
+| **Validar noticia** ![Validar noticia](docs/screenshots/09_validar_noticia.png) | **Historial / auditoría** ![Historial](docs/screenshots/10_historial.png) |
+| **Configuración del sistema** ![Parámetros](docs/screenshots/11_parametros.png) | |
+
 ## Diagrama de arquitectura
 
 ```mermaid
@@ -208,17 +219,6 @@ Los siguientes usuarios se crean al correr `seed.php` (también documentados en 
 | Admin | `admin@tyh.com` | `admin123` | Editor + Validador |
 
 En este sistema no existe un rol "Administrador" separado: cualquier usuario con **ambos** roles (Editor y Validador) obtiene acceso al panel de configuración.
-
-## Capturas de pantalla
-
-| | |
-|---|---|
-| **Portal público** ![Inicio](docs/screenshots/01_home.png) | **Búsqueda** ![Buscar](docs/screenshots/02_buscar.png) |
-| **Detalle de noticia** ![Ver noticia](docs/screenshots/03_ver_noticia.png) | **Login** ![Login](docs/screenshots/04_login.png) |
-| **Registro** ![Registro](docs/screenshots/05_registro.png) | **Dashboard** ![Dashboard](docs/screenshots/06_dashboard.png) |
-| **Crear noticia** ![Crear noticia](docs/screenshots/07_crear_noticia.png) | **Editar noticia** ![Editar noticia](docs/screenshots/08_editar_noticia.png) |
-| **Validar noticia** ![Validar noticia](docs/screenshots/09_validar_noticia.png) | **Historial / auditoría** ![Historial](docs/screenshots/10_historial.png) |
-| **Configuración del sistema** ![Parámetros](docs/screenshots/11_parametros.png) | |
 
 ## Limitaciones conocidas
 
