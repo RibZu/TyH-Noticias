@@ -4,34 +4,15 @@ Sistema de gestión, validación y publicación de noticias institucionales, des
 
 Trabajo práctico integrador de la materia **Técnicas y Herramientas para el Desarrollo Web con Calidad**, realizado en el marco de una carrera universitaria con foco en testing y calidad de software.
 
-## Índice
-
-- [Funcionalidades](#funcionalidades)
-- [Diagrama de arquitectura](#diagrama-de-arquitectura)
-- [Diagrama entidad-relación](#diagrama-entidad-relación)
-- [Stack técnico](#stack-técnico)
-- [Estructura de carpetas](#estructura-de-carpetas)
-- [Instalación](#instalación)
-- [Usuarios de prueba](#usuarios-de-prueba)
-- [Capturas de pantalla](#capturas-de-pantalla)
-- [Limitaciones conocidas](#limitaciones-conocidas)
-
 ## Funcionalidades
 
-- **Autenticación**: registro y login de usuarios, con contraseñas hasheadas (`password_hash` / `password_verify`).
-- **Roles combinables**: Editor, Validador, o ambos a la vez (un usuario con ambos roles actúa como administrador). Al registrarse, cada usuario elige qué rol(es) quiere tener.
-- **Gestión de noticias (CRUD)**: creación, edición y anulación de noticias, con carga opcional de imagen (JPG/PNG, tamaño máximo configurable).
-- **Flujo editorial con máquina de estados**: `Borrador` → `Lista para Validación` → `Publicada` / `Para Corrección` → vuelve a `Borrador`, además de `Anulada` y `Expirada`. Cada transición se valida contra las transiciones permitidas.
-- **Validación editorial**: un usuario con rol Validador puede publicar una noticia o devolverla para corrección.
-- **Auditoría**: cada cambio de estado de una noticia queda registrado (quién, cuándo, de qué estado a qué estado), consultable como historial por noticia.
-- **Expiración automática**: las noticias publicadas expiran solas una vez transcurridos N días (configurable), sin intervención manual.
-- **Parámetros del sistema configurables** por un administrador: días hasta expiración y tamaño máximo de imagen.
-- **Sitio público sin login**: listado de noticias publicadas, sección de destacadas, búsqueda por texto y contador de vistas por noticia.
-- **Cambio de contraseña** desde el perfil del usuario autenticado.
+- Registro/login con contraseñas hasheadas y roles combinables (Editor, Validador, o ambos = administrador).
+- CRUD de noticias con imagen opcional, y flujo editorial por estados: `Borrador → Lista para Validación → Publicada / Para Corrección → Anulada / Expirada`.
+- Validación editorial (publicar o pedir corrección) y auditoría de cada cambio de estado.
+- Expiración automática de noticias publicadas y parámetros del sistema configurables (días de expiración, tamaño máximo de imagen).
+- Sitio público sin login: listado, destacadas, búsqueda y contador de vistas.
 
 ## Diagrama de arquitectura
-
-> Este diagrama se renderiza automáticamente en GitHub y en editores compatibles con Mermaid (VS Code con la extensión correspondiente, GitLab, etc.).
 
 ```mermaid
 flowchart TD
@@ -241,18 +222,12 @@ En este sistema no existe un rol "Administrador" separado: cualquier usuario con
 
 ## Limitaciones conocidas
 
-Esta sección es deliberadamente honesta: el proyecto es un trabajo práctico universitario, no un sistema en producción. Se dejan documentadas las falencias reales encontradas al revisar el código, en vez de ocultarlas.
+Es un trabajo práctico universitario, no un sistema en producción. Falencias reales detectadas en el código:
 
-- **Credenciales de base de datos hardcodeadas** en `config/database.php` (`root` sin contraseña, sin uso de variables de entorno).
-- **Credenciales de prueba expuestas en la propia interfaz**: la pantalla de login y la de registro muestran en pantalla el email y contraseña del usuario administrador.
-- **Auto-asignación de roles sin aprobación**: el formulario público de registro deja que cualquier persona se marque a sí misma como Editor y/o Validador (y, al combinar ambos, obtiene de hecho permisos de administrador) sin que nadie lo apruebe.
-- **Sin protección CSRF** en ningún formulario (login, registro, cambio de contraseña, alta/edición de noticias, cambios de estado).
-- **Cambios de estado ejecutables por GET**: publicar o pedir corrección de una noticia se puede disparar con un simple enlace (`?action=validar_noticia&id=X&accion=publicar`), sin confirmación server-side más allá de la sesión.
-- **Validación de archivos subidos solo por extensión**: se comprueba la extensión del nombre de archivo, no el contenido real (MIME), lo que permite subir un archivo con contenido arbitrario renombrado a `.jpg`/`.png`.
-- **Vistas referenciadas que no existen en el repositorio**: `AuthController::perfil()` incluye `views/auth/perfil.php` y `ConfigController::usuarios()` incluye `views/config/usuarios.php`, pero ninguno de los dos archivos está en el proyecto — ambas acciones rompen con un error de PHP.
-- **Enlace a hoja de estilos roto**: `views/layout/header.php` referencia `assets/css/styles.css`, pero el archivo real se llama `assets/css/style.css` — esos estilos nunca se aplican.
-- **Archivo de vista duplicado**: `views/auth/registrar.php` y `views/auth/resgistrar.php` (con un typo en el nombre) son casi idénticos; el segundo no está referenciado por ninguna ruta y parece un archivo residual.
-- **Manejo inconsistente de imágenes**: la vista de validación resuelve tanto imágenes subidas como URLs externas, pero las vistas públicas y la de edición solo buscan el archivo en `uploads/`, así que una imagen cargada como URL (como las del set de datos de prueba) no se muestra ahí.
-- **Dependencia sin usar**: jQuery se carga desde CDN en el layout principal, pero ningún script del proyecto lo utiliza (todo el JS es vanilla).
-- **Sin tests automatizados** en el repositorio, pese a ser el trabajo práctico de una materia orientada a testing y calidad de software.
-- **Sin paginación** en los listados públicos ni en el listado de noticias del dashboard.
+- Credenciales de DB hardcodeadas (`root` sin contraseña) y credenciales de admin expuestas en las pantallas de login/registro.
+- Auto-asignación de roles sin aprobación: cualquiera puede registrarse como Editor y/o Validador (= admin) sin que nadie lo apruebe.
+- Sin protección CSRF, y los cambios de estado de una noticia se pueden disparar por GET con solo un enlace.
+- Validación de imágenes subidas solo por extensión, no por contenido real.
+- Dos vistas referenciadas por los controladores (`views/auth/perfil.php`, `views/config/usuarios.php`) no existen en el repo y rompen esas pantallas.
+- Un enlace a CSS roto (`styles.css` vs. `style.css`) y un archivo de vista duplicado (`resgistrar.php`, typo, sin uso).
+- jQuery cargado pero nunca usado; sin tests automatizados; sin paginación en los listados.
