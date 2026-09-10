@@ -25,13 +25,13 @@ Trabajo práctico integrador de la materia **Técnicas y Herramientas para el De
 
 ## Diagrama de arquitectura
 
-**Diagrama:** [architecture.html](docs/diagrams/architecture.html)
+![Diagrama de arquitectura](docs/diagrams/architecture.png)
 
 Todo el ruteo pasa por `index.php`, que despacha según el parámetro `?action=` hacia el controlador correspondiente (no hay `.htaccess` con rutas amigables). Los controladores usan los modelos para hablar con la base de datos vía PDO, y finalmente incluyen (`include_once`) las vistas PHP que arman el HTML de respuesta.
 
 ## Diagrama entidad-relación
 
-**Diagrama:** [entity-relationship.html](docs/diagrams/entity-relationship.html)
+![Diagrama entidad-relación](docs/diagrams/entity-relationship.png)
 
 `PARAMETROS` es una tabla de configuración independiente (clave/valor), sin relación con las demás tablas.
 
