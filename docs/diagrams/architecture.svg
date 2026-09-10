@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="architecture-title architecture-desc">
+      <title id="architecture-title">Arquitectura de TyH Noticias</title>
+      <desc id="architecture-desc">Diagrama de arquitectura: el navegador llama a index.php, que despacha por el parámetro action hacia cuatro controladores; estos usan los modelos para persistir en MySQL vía PDO y renderizan vistas PHP de vuelta al navegador.</desc>
+      <defs><style>@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&amp;family=Geist:wght@400;500;600&amp;family=Geist+Mono:wght@400;500;600&amp;family=Noto+Sans+KR:wght@400;500;600&amp;family=Noto+Serif+KR:wght@400&amp;family=Noto+Sans+TC:wght@400;500;600&amp;family=Noto+Serif+TC:wght@400&amp;display=swap');</style>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+        <marker id="arrow-accent" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#eb6c36"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- Zone: Controladores (drawn before arrows and nodes) -->
+      <rect x="124" y="224" width="712" height="120" rx="8"
+            fill="#2d3142" fill-opacity="0.02" stroke="#2d3142" stroke-opacity="0.10" stroke-width="0.8"/>
+      <rect x="140" y="228" width="110" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="195" y="237" fill="#2d3142" fill-opacity="0.40" font-size="7" font-family="'Geist Mono', monospace"
+            text-anchor="middle" letter-spacing="0.14em">CONTROLADORES</text>
+
+      <!-- Arrows (behind boxes) -->
+
+      <!-- Browser -> Index (front controller) -->
+      <line x1="480" y1="104" x2="480" y2="136" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <rect x="490" y="112" width="66" height="14" rx="2" fill="#f5f5f5"/>
+      <text x="523" y="122" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">?ACTION=</text>
+
+      <!-- Index -> 4 controllers: trunk + bus + branches (routed clear of the zone label) -->
+      <line x1="480" y1="200" x2="480" y2="250" stroke="#4f5d75" stroke-width="1.2"/>
+      <line x1="216" y1="250" x2="744" y2="250" stroke="#4f5d75" stroke-width="1.2"/>
+      <line x1="216" y1="250" x2="216" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="392" y1="250" x2="392" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="568" y1="250" x2="568" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <line x1="744" y1="250" x2="744" y2="264" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Zone -> Modelos (PDO) -->
+      <line x1="380" y1="344" x2="380" y2="368" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <rect x="386" y="350" width="32" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="402" y="359" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">PDO</text>
+
+      <!-- Zone -> Views (render) -->
+      <line x1="608" y1="344" x2="608" y2="368" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <rect x="614" y="350" width="48" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="638" y="359" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">RENDER</text>
+
+      <!-- Modelos -> MySQL -->
+      <line x1="380" y1="432" x2="380" y2="456" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+
+      <!-- Views -> Browser (dashed return, routed clear of every box) -->
+      <path d="M 688,400 H 852 Q 860,400 860,392 V 80 Q 860,72 852,72 H 544"
+            fill="none" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <rect x="750" y="380" width="40" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="770" y="389" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.06em">HTML</text>
+
+      <!-- Node: Browser (Navegador) -->
+      <rect x="416" y="40" width="128" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="416" y="40" width="128" height="64" rx="6" fill="#4f5d75" fill-opacity="0.10" stroke="#7a8399" stroke-width="1"/>
+      <rect x="424" y="48" width="28" height="12" rx="2" fill="none" stroke="#7a8399" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="438" y="57" fill="#7a8399" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">WEB</text>
+      <text x="480" y="76" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Navegador</text>
+      <text x="480" y="92" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">cliente HTTP</text>
+
+      <!-- Node: Index (front controller) — FOCAL -->
+      <rect x="390" y="136" width="180" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="390" y="136" width="180" height="64" rx="6" fill="#eb6c36" fill-opacity="0.08" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="398" y="144" width="28" height="12" rx="2" fill="none" stroke="#eb6c36" stroke-opacity="0.50" stroke-width="0.8"/>
+      <text x="412" y="153" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">APP</text>
+      <text x="480" y="172" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">index.php</text>
+      <text x="480" y="188" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">front controller</text>
+
+      <!-- Node: AuthController -->
+      <rect x="140" y="264" width="152" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="140" y="264" width="152" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="148" y="272" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="162" y="281" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CTL</text>
+      <text x="216" y="300" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">AuthController</text>
+      <text x="216" y="316" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">login · registro</text>
+
+      <!-- Node: NoticiaController -->
+      <rect x="316" y="264" width="152" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="316" y="264" width="152" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="324" y="272" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="338" y="281" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CTL</text>
+      <text x="392" y="300" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">NoticiaController</text>
+      <text x="392" y="316" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">CRUD · estados</text>
+
+      <!-- Node: ConfigController -->
+      <rect x="492" y="264" width="152" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="492" y="264" width="152" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="500" y="272" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="514" y="281" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CTL</text>
+      <text x="568" y="300" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">ConfigController</text>
+      <text x="568" y="316" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">parámetros</text>
+
+      <!-- Node: PublicController -->
+      <rect x="668" y="264" width="152" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="668" y="264" width="152" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="676" y="272" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="690" y="281" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">CTL</text>
+      <text x="744" y="300" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">PublicController</text>
+      <text x="744" y="316" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">sitio público</text>
+
+      <!-- Node: Modelos (Usuario, Noticia, Auditoria — collapsed group) -->
+      <rect x="272" y="368" width="216" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="272" y="368" width="216" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="280" y="376" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="294" y="385" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">PDO</text>
+      <text x="380" y="404" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">Modelos</text>
+      <text x="380" y="420" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">Usuario · Noticia · Auditoria</text>
+
+      <!-- Node: views/* -->
+      <rect x="528" y="368" width="160" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="528" y="368" width="160" height="64" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="536" y="376" width="28" height="12" rx="2" fill="none" stroke="#2d3142" stroke-opacity="0.40" stroke-width="0.8"/>
+      <text x="550" y="385" fill="#2d3142" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">TPL</text>
+      <text x="608" y="404" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">views/*</text>
+      <text x="608" y="420" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">plantillas PHP</text>
+
+      <!-- Node: MySQL — FOCAL -->
+      <rect x="300" y="456" width="160" height="64" rx="6" fill="#f5f5f5"/>
+      <rect x="300" y="456" width="160" height="64" rx="6" fill="#eb6c36" fill-opacity="0.08" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="308" y="464" width="28" height="12" rx="2" fill="none" stroke="#eb6c36" stroke-opacity="0.50" stroke-width="0.8"/>
+      <text x="322" y="473" fill="#eb6c36" font-size="7" font-family="'Geist Mono', monospace" text-anchor="middle" letter-spacing="0.08em">DB</text>
+      <text x="380" y="492" fill="#2d3142" font-size="12" font-weight="600" font-family="'Geist', sans-serif" text-anchor="middle">MySQL</text>
+      <text x="380" y="508" fill="#4f5d75" font-size="9" font-family="'Geist Mono', monospace" text-anchor="middle">noticias_tyh</text>
+
+      <!-- Legend strip -->
+      <line x1="40" y1="540" x2="920" y2="540" stroke="#2d3142" stroke-opacity="0.10" stroke-width="0.8"/>
+      <text x="40" y="556" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEYENDA</text>
+
+      <rect x="40" y="568" width="14" height="10" rx="2" fill="#eb6c36" fill-opacity="0.08" stroke="#eb6c36" stroke-width="1"/>
+      <text x="60" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Focal · integración y datos</text>
+
+      <rect x="250" y="568" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="270" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Backend PHP</text>
+
+      <rect x="400" y="568" width="14" height="10" rx="2" fill="#4f5d75" fill-opacity="0.10" stroke="#7a8399" stroke-width="1"/>
+      <text x="420" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Cliente externo</text>
+
+      <line x1="560" y1="573" x2="588" y2="573" stroke="#4f5d75" stroke-width="1.2" marker-end="url(#arrow)"/>
+      <text x="596" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Flujo principal</text>
+
+      <line x1="740" y1="573" x2="768" y2="573" stroke="#4f5d75" stroke-width="1" stroke-dasharray="4,3" marker-end="url(#arrow)"/>
+      <text x="776" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Retorno / respuesta</text>
+    </svg>

@@ -25,100 +25,13 @@ Trabajo práctico integrador de la materia **Técnicas y Herramientas para el De
 
 ## Diagrama de arquitectura
 
-```mermaid
-flowchart TD
-    Browser["Navegador"]
-
-    subgraph App["Aplicación PHP"]
-        Index["index.php (front controller)"]
-        AuthC["AuthController"]
-        NoticiaC["NoticiaController"]
-        ConfigC["ConfigController"]
-        PublicC["PublicController"]
-
-        UsuarioM["Usuario (modelo)"]
-        NoticiaM["Noticia (modelo)"]
-        AuditoriaM["Auditoria (modelo)"]
-
-        Views["views/* (plantillas PHP)"]
-    end
-
-    DB[("MySQL: noticias_tyh")]
-
-    Browser -->|"?action=..."| Index
-    Index --> AuthC
-    Index --> NoticiaC
-    Index --> ConfigC
-    Index --> PublicC
-
-    AuthC --> UsuarioM
-    NoticiaC --> NoticiaM
-    NoticiaC --> AuditoriaM
-    NoticiaC --> UsuarioM
-    ConfigC --> UsuarioM
-    PublicC --> NoticiaM
-
-    UsuarioM --> DB
-    NoticiaM --> DB
-    AuditoriaM --> DB
-
-    AuthC --> Views
-    NoticiaC --> Views
-    ConfigC --> Views
-    PublicC --> Views
-    Views -->|"HTML"| Browser
-```
+![Diagrama de arquitectura](docs/diagrams/architecture.png)
 
 Todo el ruteo pasa por `index.php`, que despacha según el parámetro `?action=` hacia el controlador correspondiente (no hay `.htaccess` con rutas amigables). Los controladores usan los modelos para hablar con la base de datos vía PDO, y finalmente incluyen (`include_once`) las vistas PHP que arman el HTML de respuesta.
 
 ## Diagrama entidad-relación
 
-```mermaid
-erDiagram
-    USUARIOS ||--o{ NOTICIAS : "autor_id"
-    USUARIOS ||--o{ AUDITORIA : "usuario_id"
-    NOTICIAS ||--o{ AUDITORIA : "noticia_id"
-
-    USUARIOS {
-        int id PK
-        varchar nombre
-        varchar email UK
-        varchar password
-        boolean rol_editor
-        boolean rol_validador
-        timestamp fecha_registro
-    }
-
-    NOTICIAS {
-        int id PK
-        varchar titulo
-        text descripcion
-        varchar imagen
-        enum estado
-        int autor_id FK
-        timestamp fecha_creacion
-        timestamp fecha_publicacion
-        timestamp fecha_expiracion
-        int vistas
-    }
-
-    AUDITORIA {
-        int id PK
-        int noticia_id FK
-        int usuario_id FK
-        varchar accion
-        varchar estado_anterior
-        varchar estado_nuevo
-        timestamp fecha_hora
-    }
-
-    PARAMETROS {
-        int id PK
-        varchar clave UK
-        varchar valor
-        text descripcion
-    }
-```
+![Diagrama entidad-relación](docs/diagrams/entity-relationship.png)
 
 `PARAMETROS` es una tabla de configuración independiente (clave/valor), sin relación con las demás tablas.
 
