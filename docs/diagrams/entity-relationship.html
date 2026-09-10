@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TyH Noticias · Modelo de datos</title>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@400;500;600&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --color-paper:   #f5f5f5;
+      --color-ink:     #2d3142;
+      --color-muted:   #4f5d75;
+      --color-accent:  #eb6c36;
+      --font-sans:     'Geist', system-ui, sans-serif;
+      --font-serif:    'Instrument Serif', serif;
+      --font-mono:     'Geist Mono', ui-monospace, monospace;
+    }
+
+    body {
+      font-family: var(--font-sans);
+      background: var(--color-paper);
+      color: var(--color-ink);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 2rem;
+    }
+
+    .frame { max-width: 1100px; width: 100%; }
+
+    .eyebrow {
+      font-family: var(--font-mono);
+      font-size: 0.66rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-muted);
+      margin-bottom: 0.5rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-size: clamp(1.5rem, 2.4vw + 0.75rem, 2rem);
+      font-weight: 400;
+      letter-spacing: -0.02em;
+      line-height: 1.15;
+      color: var(--color-ink);
+      margin-bottom: 1.5rem;
+    }
+
+    svg { width: 100%; min-width: 880px; display: block; }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <p class="eyebrow">ER · TyH Noticias</p>
+    <h1>Modelo de datos</h1>
+
+    <svg viewBox="0 0 960 600" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="entity-relationship-title entity-relationship-desc">
+      <title id="entity-relationship-title">Modelo de datos de TyH Noticias</title>
+      <desc id="entity-relationship-desc">Diagrama entidad-relación: USUARIOS es autor de NOTICIAS y ambos generan registros en AUDITORIA; PARAMETROS es una tabla de configuración clave-valor independiente, sin relación con las demás.</desc>
+      <defs>
+        <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto"><polygon points="0 0, 8 3, 0 6" fill="#4f5d75"/></marker>
+      </defs>
+
+      <rect width="100%" height="100%" fill="#f5f5f5"/>
+
+      <!-- Relationship lines (drawn before entity boxes) -->
+      <!-- USUARIOS (1) — NOTICIAS (N) : autor_id -->
+      <line x1="280" y1="140" x2="460" y2="140" stroke="#4f5d75" stroke-width="1"/>
+      <!-- USUARIOS (1) — AUDITORIA (N) : usuario_id -->
+      <path d="M 230,240 V 278 Q 230,286 238,286 H 302 Q 310,286 310,294 V 332"
+            fill="none" stroke="#4f5d75" stroke-width="1"/>
+      <!-- NOTICIAS (1) — AUDITORIA (N) : noticia_id -->
+      <path d="M 500,300 V 308 Q 500,316 492,316 H 448 Q 440,316 440,324 V 332"
+            fill="none" stroke="#4f5d75" stroke-width="1"/>
+
+      <!-- Cardinality labels -->
+      <rect x="286" y="132" width="12" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="292" y="142" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+      <rect x="442" y="132" width="16" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="450" y="142" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">N</text>
+
+      <rect x="224" y="246" width="12" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="230" y="256" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+      <rect x="300" y="320" width="16" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="308" y="330" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">N</text>
+
+      <rect x="494" y="306" width="12" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="500" y="316" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">1</text>
+      <rect x="430" y="320" width="16" height="12" rx="2" fill="#f5f5f5"/>
+      <text x="438" y="330" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="middle" font-weight="600">N</text>
+
+      <!-- Entity: USUARIOS -->
+      <rect x="60" y="40" width="220" height="200" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="60" y="40" width="220" height="40" rx="6" fill="rgba(45,49,66,0.04)" stroke="none"/>
+      <rect x="60" y="72" width="220" height="8" fill="rgba(45,49,66,0.04)"/>
+      <line x1="60" y1="80" x2="280" y2="80" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+      <text x="76" y="56" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ENTIDAD</text>
+      <text x="76" y="72" fill="#2d3142" font-size="14" font-weight="600" font-family="'Geist', sans-serif">USUARIOS</text>
+      <text x="76" y="100" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace"># id</text>
+      <text x="264" y="100" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int</text>
+      <text x="76" y="120" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">nombre</text>
+      <text x="264" y="120" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="76" y="140" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">email</text>
+      <text x="264" y="140" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar · UK</text>
+      <text x="76" y="160" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">password</text>
+      <text x="264" y="160" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="76" y="180" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">rol_editor</text>
+      <text x="264" y="180" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">boolean</text>
+      <text x="76" y="200" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">rol_validador</text>
+      <text x="264" y="200" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">boolean</text>
+      <text x="76" y="220" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">fecha_registro</text>
+      <text x="264" y="220" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">timestamp</text>
+
+      <!-- Entity: NOTICIAS — FOCAL / aggregate root -->
+      <rect x="460" y="40" width="240" height="260" rx="6" fill="rgba(235,108,54,0.04)" stroke="#eb6c36" stroke-width="1"/>
+      <rect x="460" y="40" width="240" height="40" rx="6" fill="rgba(235,108,54,0.10)" stroke="none"/>
+      <rect x="460" y="72" width="240" height="8" fill="rgba(235,108,54,0.10)"/>
+      <line x1="460" y1="80" x2="700" y2="80" stroke="rgba(235,108,54,0.40)" stroke-width="1"/>
+      <text x="476" y="56" fill="#eb6c36" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ENTIDAD · CENTRAL</text>
+      <text x="476" y="72" fill="#2d3142" font-size="14" font-weight="600" font-family="'Geist', sans-serif">NOTICIAS</text>
+      <text x="476" y="100" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace"># id</text>
+      <text x="684" y="100" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int</text>
+      <text x="476" y="120" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">titulo</text>
+      <text x="684" y="120" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="476" y="140" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">descripcion</text>
+      <text x="684" y="140" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">text</text>
+      <text x="476" y="160" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">imagen</text>
+      <text x="684" y="160" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="476" y="180" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">estado</text>
+      <text x="684" y="180" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">enum</text>
+      <text x="476" y="200" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">→ autor_id</text>
+      <text x="684" y="200" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int · FK</text>
+      <text x="476" y="220" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">fecha_creacion</text>
+      <text x="684" y="220" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">timestamp</text>
+      <text x="476" y="240" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">fecha_publicacion</text>
+      <text x="684" y="240" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">timestamp</text>
+      <text x="476" y="260" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">fecha_expiracion</text>
+      <text x="684" y="260" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">timestamp</text>
+      <text x="476" y="280" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">vistas</text>
+      <text x="684" y="280" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int</text>
+
+      <!-- Entity: PARAMETROS — independent config table (no relationships) -->
+      <rect x="720" y="40" width="200" height="140" rx="6" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="4,3"/>
+      <rect x="720" y="40" width="200" height="40" rx="6" fill="rgba(45,49,66,0.04)" stroke="none"/>
+      <rect x="720" y="72" width="200" height="8" fill="rgba(45,49,66,0.04)"/>
+      <line x1="720" y1="80" x2="920" y2="80" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+      <text x="736" y="56" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">CONFIG · INDEPENDIENTE</text>
+      <text x="736" y="72" fill="#2d3142" font-size="14" font-weight="600" font-family="'Geist', sans-serif">PARAMETROS</text>
+      <text x="736" y="100" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace"># id</text>
+      <text x="904" y="100" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int</text>
+      <text x="736" y="120" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">clave</text>
+      <text x="904" y="120" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar · UK</text>
+      <text x="736" y="140" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">valor</text>
+      <text x="904" y="140" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="736" y="160" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">descripcion</text>
+      <text x="904" y="160" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">text</text>
+
+      <!-- Entity: AUDITORIA -->
+      <rect x="264" y="332" width="220" height="200" rx="6" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <rect x="264" y="332" width="220" height="40" rx="6" fill="rgba(45,49,66,0.04)" stroke="none"/>
+      <rect x="264" y="364" width="220" height="8" fill="rgba(45,49,66,0.04)"/>
+      <line x1="264" y1="372" x2="484" y2="372" stroke="rgba(45,49,66,0.22)" stroke-width="1"/>
+      <text x="280" y="348" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.14em">ENTIDAD</text>
+      <text x="280" y="364" fill="#2d3142" font-size="14" font-weight="600" font-family="'Geist', sans-serif">AUDITORIA</text>
+      <text x="280" y="392" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace"># id</text>
+      <text x="468" y="392" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int</text>
+      <text x="280" y="412" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">→ noticia_id</text>
+      <text x="468" y="412" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int · FK</text>
+      <text x="280" y="432" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">→ usuario_id</text>
+      <text x="468" y="432" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">int · FK</text>
+      <text x="280" y="452" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">accion</text>
+      <text x="468" y="452" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="280" y="472" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">estado_anterior</text>
+      <text x="468" y="472" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="280" y="492" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">estado_nuevo</text>
+      <text x="468" y="492" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">varchar</text>
+      <text x="280" y="512" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace">fecha_hora</text>
+      <text x="468" y="512" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" text-anchor="end">timestamp</text>
+
+      <!-- Legend -->
+      <line x1="40" y1="540" x2="920" y2="540" stroke="rgba(45,49,66,0.10)" stroke-width="0.8"/>
+      <text x="40" y="556" fill="#4f5d75" font-size="8" font-family="'Geist Mono', monospace" letter-spacing="0.18em">LEYENDA</text>
+
+      <rect x="40" y="568" width="14" height="10" rx="2" fill="rgba(235,108,54,0.04)" stroke="#eb6c36" stroke-width="1"/>
+      <text x="60" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Entidad central</text>
+
+      <rect x="180" y="568" width="14" height="10" rx="2" fill="#ffffff" stroke="#2d3142" stroke-width="1"/>
+      <text x="200" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Entidad</text>
+
+      <rect x="280" y="568" width="14" height="10" rx="2" fill="rgba(45,49,66,0.02)" stroke="rgba(45,49,66,0.30)" stroke-width="1" stroke-dasharray="3,2"/>
+      <text x="300" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Config · sin relación</text>
+
+      <text x="460" y="576" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace" font-weight="600">#</text>
+      <text x="476" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Clave primaria</text>
+
+      <text x="600" y="576" fill="#2d3142" font-size="10" font-family="'Geist Mono', monospace" font-weight="600">→</text>
+      <text x="616" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Clave foránea</text>
+
+      <text x="740" y="576" fill="#4f5d75" font-size="10" font-family="'Geist Mono', monospace" font-weight="600">1 / N</text>
+      <text x="772" y="576" fill="#4f5d75" font-size="8.5" font-family="'Geist', sans-serif">Cardinalidad</text>
+    </svg>
+  </div>
+</body>
+</html>
